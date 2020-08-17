@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Financial App</title>
+    <meta charset="utf-8" />
+    <link
+      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="myscripts.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <img src="./logo.svg" />
+      <br />
+      <h3>Client fact find</h3>
+      <div id="clientForm">
+        <label>Given name:</label>
+        <input id="givenName" />
+        <label>Family name:</label>
+        <input id="familyName" />
+        <label>Email:</label>
+        <input id="email" /><br />
+        <button type="button" onclick="downloadWealthReport()">
+          Get the report
+        </button>
+      </div>
+      <div>
+        <button onclick="localStorage.removeItem('demoData')">
+          Reset All
+        </button>
+      </div>
+
+      <pre id="resultPanel"></pre>
+    </div>
+  </body>
+</html>
