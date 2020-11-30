@@ -5,6 +5,9 @@ This is a very basic example of a proposed implementation of our open API
 
 To get a set of credentials please contact support@visiblecapital.io
 
+## Documentation and Postman Collection
+https://documenter.getpostman.com/view/900287/TVewaQB9
+
 ## The sample app
 - In this sample we are going to get open banking data for a client that is completing our imaginary factfind application. 
 - First we log in
