@@ -4,6 +4,9 @@ const clientId = "YOUR_CLIENT_ID";
 const clientSecret = "YOUR_CLIENT_SECRET";
 const callbackUrl = "YOUR_CALLBACK_URL";
 
+// Here is the api environment
+const apiUrl = "https://api.visiblecapital.io";
+
 // Since there is no back end in the example, We will store data
 // in the browser localStorage, to be prepared for the callback
 const demoData = localStorage.getItem("demoData");
@@ -42,14 +45,11 @@ const downloadWealthReport = async () => {
 // now the implementation of the already mentioned functions
 // just a call to the api
 const getAccessTokenFromVC = async () => {
-  const response = await fetch(
-    "https://api.staging.visiblecapital.io/auth/login/api",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ clientId, clientSecret, realm: "adviser" }),
-    }
-  );
+  const response = await fetch(`${apiUrl}/auth/login/api`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ clientId, clientSecret, realm: "adviser" }),
+  });
   const body = await response.json();
   return body.result;
 };
@@ -61,17 +61,14 @@ const createNewClient = async (
   email,
   accessToken
 ) => {
-  const response = await fetch(
-    `https://api.staging.visiblecapital.io/advisers/${adviserId}/clients`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({ email, givenName, familyName }),
-    }
-  );
+  const response = await fetch(`${apiUrl}/advisers/${adviserId}/clients`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ email, givenName, familyName }),
+  });
   const body = await response.json();
   return body.result;
 };
@@ -83,7 +80,7 @@ const createAssessment = async (
   callbackUrl
 ) => {
   const response = await fetch(
-    `https://api.staging.visiblecapital.io/advisers/${adviserId}/clients/${newClientId}/invite`,
+    `${apiUrl}/advisers/${adviserId}/clients/${newClientId}/invite`,
     {
       method: "POST",
       headers: {
@@ -99,7 +96,7 @@ const createAssessment = async (
 
 const getAssessmentUrl = async (accessToken, adviserId, assessmentId) => {
   const response = await fetch(
-    `https://api.staging.visiblecapital.io/advisers/${adviserId}/assessments/${assessmentId}/url`,
+    `${apiUrl}/advisers/${adviserId}/assessments/${assessmentId}/url`,
     {
       method: "POST",
       headers: {
@@ -117,7 +114,7 @@ const getAssessmentUrl = async (accessToken, adviserId, assessmentId) => {
 const getWealthReport = async (adviserId, assessmentId) => {
   const { accessToken } = await getAccessTokenFromVC();
   const response = await fetch(
-    `https://api.staging.visiblecapital.io/advisers/${adviserId}/assessments/${assessmentId}`,
+    `${apiUrl}/advisers/${adviserId}/assessments/${assessmentId}`,
     {
       method: "GET",
       headers: {
