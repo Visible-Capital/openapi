@@ -17,5 +17,6 @@ https://documenter.getpostman.com/view/900287/TVewaQB9
 - Then we redirect the client to the open banking process
 - Finally we get the client redirected back to our application and we make a final call to the Visible Capital'a API to get the report in a json format.
 
-
+### Local http server
+Just for demonstration purposes you might want to run the html page in a local server for the redirect to work locally. I recommend using https://www.npmjs.com/package/http-server
 
